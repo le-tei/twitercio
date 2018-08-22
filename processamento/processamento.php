@@ -18,12 +18,14 @@ function salvar($nome, $email, $senha, $usuario, $dataNascimento, $sexo, $cidade
       include 'Usuario.php';
       $obj = new usuario();
       $obj->salvarinformacoes($nome, $email, $senha, $usuario, $dataCriacao, $dataNascimento, $sexo, $cidade, $site, $foto);
-      header("location: ../inicio.php");
+      $_SESSION['usuarioLogado'] = $tercio["id"];
+      /*header("location: ../inicio.php");*/
     }
     else {
       echo ($_SESSION['mensagercio'] = "Senhas diferentes!");
       header("location: ../cadastro.php");
     }
+    header("location: ../index.php");
 }
 
 function login($email, $senha, $nome) {
@@ -32,7 +34,7 @@ function login($email, $senha, $nome) {
     $tercio = $login->logar($email, md5($senha));
     if(isset ($tercio)){
       $_SESSION['usuarioLogado'] = $tercio["id"];
-      echo ($_SESSION['mensagercio_bemvindo'] = "Bem vindo ". $tercio["nome"]);
+      echo ($_SESSION['mensagercio_bemvindo'] = "Bem vindo/a, ". $tercio["nome"]);
       header("location: ../inicio.php");
     }
     else{

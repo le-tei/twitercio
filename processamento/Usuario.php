@@ -23,7 +23,7 @@ class usuario {
         $sql = "INSERT INTO tweets (data, mensagem, usuario) VALUES ('$data', '$mensagem', '$usuario_id')";
         $obj->insert($sql);
     }
-    
+
 }
 
 ?>
